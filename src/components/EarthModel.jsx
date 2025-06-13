@@ -2,7 +2,7 @@ import { useRef, useEffect, Suspense } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-function Earth({ scale = 1 }) {
+function Earth() {
   const earthRef = useRef();
   const gltf = useLoader(GLTFLoader, "/earth_1.glb");
 
@@ -14,22 +14,18 @@ function Earth({ scale = 1 }) {
 
   useEffect(() => {
     if (gltf.scene) {
-      console.log("GLTF Scene:", gltf.scene); // Logs the 3D model data
-
-      gltf.scene.scale.setScalar(scale);
+      gltf.scene.scale.setScalar(1); // Keep default, Framer Motion will scale the whole div
     }
-  }, [gltf, scale]);
+  }, [gltf]);
 
-  return (
-    <primitive ref={earthRef} object={gltf.scene} position={[0, 0, 0]} />
-  );
+  return <primitive ref={earthRef} object={gltf.scene} position={[0, 0, 0]} />;
 }
 
-function EarthModel({ scale = 1 }) {
+function EarthModel() {
   return (
-    <div className="w-full h-full">
+    <div className="w-52 h-52 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-64 lg:h-64">
       <Canvas
-        camera={{ position: [0, 0, 10], fov: 45, near: 0.1, far: 1000 }}
+        camera={{ position: [0, 0, 10], fov: 100 }}
         style={{ background: "transparent" }}
         gl={{ antialias: true, alpha: true }}
       >
@@ -41,26 +37,15 @@ function EarthModel({ scale = 1 }) {
             </mesh>
           }
         >
-    {/* Soft ambient light to prevent complete darkness */}
-    <ambientLight intensity={0.5} />
-
-    {/* Point light simulating the Sun */}
-    <pointLight
-      position={[10, 2, 10]} // from the right front side //10 for the right side, 2 for a bit above, 15 for the front side
-      intensity={50}
-      distance={0} // 0 means no distance cutoff
-      decay={0} // natural falloff
-      color={"white"}
-    />
-
-    {/* Optional: a small sphere to visualize the point light (sun) */}
-    {/* 
-    <mesh position={[5, 0, 3]}>
-      <sphereGeometry args={[0.1, 16, 16]} />
-      <meshBasicMaterial color="yellow" />
-    </mesh> 
-    */}
-          <Earth scale={scale} />
+          <ambientLight intensity={0.5} />
+          <pointLight
+            position={[10, 2, 10]}
+            intensity={50}
+            decay={0}
+            distance={0}
+            color={"white"}
+          />
+          <Earth />
         </Suspense>
       </Canvas>
     </div>
