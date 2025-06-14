@@ -20,7 +20,7 @@ const App = () => {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -500]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -1000]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 2]);
 
   return (
@@ -30,15 +30,15 @@ const App = () => {
           <LandingPage />
         </ParallaxLayer>
 
-        <ParallaxLayer sticky={{ start: 0.15, end: 1.5 }}>
-          <div className="w-full h-full flex items-center justify-center">
-            <motion.div style={{ x, scale }}>
+        <ParallaxLayer sticky={{ start: 0.15, end: 0.3 }}>
+          <div className="w-full h-full flex items-center justify-center parallax-container">
+            <motion.div style={{ x, scale }} className="parallax-container">
               <EarthModel />
             </motion.div>
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={1}>
+        <ParallaxLayer speed={0.5} offset={1}>
           <Home />
         </ParallaxLayer>
       </Parallax>

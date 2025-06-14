@@ -18,12 +18,13 @@ function Earth() {
     }
   }, [gltf]);
 
-  return <primitive ref={earthRef} object={gltf.scene} position={[0, 0, 0]} />;
+  return <primitive ref={earthRef} object={gltf.scene} position={[-3, 0, 0]} />;
 }
 
 function EarthModel() {
   return (
-    <div className="w-52 h-52 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-64 lg:h-64">
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-64 h-64 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-64 lg:h-64" >
       <Canvas
         camera={{ position: [0, 0, 10], fov: 100 }}
         style={{ background: "transparent" }}
@@ -48,6 +49,7 @@ function EarthModel() {
           <Earth />
         </Suspense>
       </Canvas>
+      </div>
     </div>
   );
 }
