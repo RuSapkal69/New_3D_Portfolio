@@ -7,9 +7,11 @@
   50% { transform: translateY(-20px) rotate(180deg); }
 }
 
-/* index.css */
 
-.parallax-container {
-  overflow: visible !important;
+
+/* in index.css */
+body {
+  background-color: black;
 }
+
 

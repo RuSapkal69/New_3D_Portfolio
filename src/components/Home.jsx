@@ -4,14 +4,27 @@ function Home() {
   const homeRef = useRef(null)
 
   return (
-    <div ref={homeRef} className="relative w-full min-h-screen"
-    style={{
-  background: "url('/universe_2.jpg') no-repeat center center fixed",
-  backgroundSize: "cover"
-}}
+    <div
+      ref={homeRef}
+      className="relative w-full min-h-screen bg-no-repeat bg-center bg-fixed"
+      style={{
+        backgroundColor: "black"
+      }}
     >
+      {/* Video Header */}
+      <div className="w-full h-[35vh] overflow-hidden">
+        <video
+          src="Universe_india.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       {/* Content with backdrop for readability */}
-      <div className="relative z-10 min-h-screen flex flex-col">
+      <div className="relative z-10 min-h-[75vh] flex flex-col">
         {/* Hero Section */}
         <section className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-4xl mx-auto text-center">
@@ -19,8 +32,7 @@ function Home() {
               Welcome to My Portfolio
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
-              I'm a passionate developer creating amazing digital experiences with modern technologies and innovative
-              solutions.
+              I'm a passionate developer creating amazing digital experiences with modern technologies and innovative solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">

@@ -21,24 +21,24 @@ const App = () => {
   });
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -1000]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 2]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 3]);
+  const opacity = useTransform(scrollYProgress, [0.15, 0.3], [1, 0]);
 
   return (
     <div className="w-full h-screen">
-      <Parallax pages={2.5} ref={parallaxRef}>
-        <ParallaxLayer offset={0} speed={0.3}>
+      <Parallax pages={3} ref={parallaxRef}>
+        <ParallaxLayer offset={0} speed={0.1}>
           <LandingPage />
         </ParallaxLayer>
 
-        <ParallaxLayer sticky={{ start: 0.15, end: 0.3 }}>
+        <ParallaxLayer offset={0.5} sticky={{ start: 0.15, end: 1 }}>
           <div className="w-full h-full flex items-center justify-center parallax-container">
-            <motion.div style={{ x, scale }} className="parallax-container">
+            <motion.div style={{ x, scale, opacity }} className="parallax-container ml-[34rem]">
               <EarthModel />
             </motion.div>
           </div>
         </ParallaxLayer>
-
-        <ParallaxLayer speed={0.5} offset={1}>
+        <ParallaxLayer speed={1} offset={1}> 
           <Home />
         </ParallaxLayer>
       </Parallax>
